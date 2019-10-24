@@ -2,7 +2,7 @@
 <html>
 <head>
 	<#import "./common/common.macro.ftl" as netCommon>
-    <title>消息队列中心</title>
+    <title>ETL中心</title>
 	<@netCommon.commonStyle />
     <link rel="stylesheet" href="${request.contextPath}/../static/adminlte/plugins/iCheck/square/blue.css">
 </head>
@@ -13,7 +13,7 @@
     </div>
     <form id="loginForm" method="post" >
         <div class="login-box-body">
-            <p class="login-box-msg">消息队列中心</p>
+            <p class="login-box-msg">ETL中心</p>
             <div class="form-group has-feedback">
                 <input type="text" name="userName" class="form-control" placeholder="请输入登陆账号" value="admin" maxlength="18" >
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
