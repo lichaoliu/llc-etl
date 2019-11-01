@@ -1,4 +1,4 @@
-package com.llc.etl.admin.core;
+package com.llc.etl.admin.core.util;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;

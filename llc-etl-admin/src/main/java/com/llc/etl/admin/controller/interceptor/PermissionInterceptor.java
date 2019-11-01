@@ -1,7 +1,7 @@
 package com.llc.etl.admin.controller.interceptor;
 
 import com.llc.etl.admin.controller.annotation.PermessionLimit;
-import com.llc.etl.admin.core.CookieUtil;
+import com.llc.etl.admin.core.util.CookieUtil;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -49,6 +49,17 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter implements 
         if (indentityInfo == null || !getLoginIdentityToken().equals(indentityInfo.trim())) {
             return false;
         }
+        return true;
+    }
+
+    public static boolean login(HttpServletResponse response, String username, String password, boolean ifRemember) {
+        String tokenTmp = DigestUtils.md5DigestAsHex(String.valueOf(username + "_" + password).getBytes());
+        tokenTmp = new BigInteger(1, tokenTmp.getBytes()).toString(16);
+
+        if (!getLoginIdentityToken().equals(tokenTmp)) {
+            return false;
+        }
+        CookieUtil.set(response, LOGIN_IDENTITY_KEY, getLoginIdentityToken(), ifRemember);
         return true;
     }
 

@@ -34,7 +34,7 @@
 
                         <div class="info-box-content">
                             <span class="info-box-text">业务线数量</span>
-                            <span class="info-box-number">${bizCount}</span>
+                            <span class="info-box-number">10</span>
 
                             <div class="progress">
                                 <div class="progress-bar" style="width: 100%"></div>
@@ -51,7 +51,7 @@
 
                         <div class="info-box-content">
                             <span class="info-box-text">消息主题数量</span>
-                            <span class="info-box-number">${topicCount}</span>
+                            <span class="info-box-number">10</span>
 
                             <div class="progress">
                                 <div class="progress-bar" style="width: 100%" ></div>
@@ -68,7 +68,7 @@
 
                         <div class="info-box-content">
                             <span class="info-box-text">消息数量</span>
-                            <span class="info-box-number">${messageCount}</span>
+                            <span class="info-box-number">10</span>
 
                             <div class="progress">
                                 <div class="progress-bar" style="width: 100%"></div>
