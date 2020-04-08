@@ -2,6 +2,7 @@ package com.llc.etl.admin.controller.interceptor;
 
 import com.llc.etl.admin.controller.annotation.PermessionLimit;
 import com.llc.etl.admin.core.util.CookieUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -68,7 +69,6 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter implements 
         if (!(handler instanceof HandlerMethod)) {
             return super.preHandle(request, response, handler);
         }
-
         if (!ifLogin(request)) {
             HandlerMethod method = (HandlerMethod) handler;
             PermessionLimit permission = method.getMethodAnnotation(PermessionLimit.class);

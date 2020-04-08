@@ -2,7 +2,7 @@
 <html>
 <head>
   	<#import "./common/common.macro.ftl" as netCommon>
-    <title>消息队列中心</title>
+    <title>etl中心</title>
 	<@netCommon.commonStyle />
     <!-- daterangepicker -->
     <link rel="stylesheet" href="${request.contextPath}/static/adminlte/bower_components/bootstrap-daterangepicker/daterangepicker.css">
@@ -18,7 +18,7 @@
 	<div class="content-wrapper">
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
-			<h1>运行报表</h1>
+			<h1>数据输入</h1>
 		</section>
 
 		<!-- Main content -->

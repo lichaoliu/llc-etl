@@ -4,7 +4,7 @@
 	<#import "./common/common.macro.ftl" as netCommon>
     <title>ETL中心</title>
 	<@netCommon.commonStyle />
-    <link rel="stylesheet" href="${request.contextPath}/../static/adminlte/plugins/iCheck/square/blue.css">
+    <link rel="stylesheet" href="${request.contextPath}/static/adminlte/plugins/iCheck/square/blue.css">
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
@@ -38,9 +38,9 @@
     </form>
 </div>
 <@netCommon.commonScript />
-<script src="${request.contextPath}/../static/plugins/jquery/jquery.validate.min.js"></script>
-<script src="${request.contextPath}/../static/adminlte/plugins/iCheck/icheck.min.js"></script>
-<script src="${request.contextPath}/../static/js/login.1.js"></script>
+<script src="${request.contextPath}/static/plugins/jquery/jquery.validate.min.js"></script>
+<script src="${request.contextPath}/static/adminlte/plugins/iCheck/icheck.min.js"></script>
+<script src="${request.contextPath}/static/js/login.1.js"></script>
 
 </body>
 </html>

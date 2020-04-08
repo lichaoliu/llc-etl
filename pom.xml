@@ -23,8 +23,9 @@
     </dependencies>
 
     <modules>
-        <module>llc-etl-api</module>
         <module>llc-etl-admin</module>
+        <module>llc-etl-entity</module>
+        <module>llc-etl-extract</module>
     </modules>
     <build>
         <plugins>
