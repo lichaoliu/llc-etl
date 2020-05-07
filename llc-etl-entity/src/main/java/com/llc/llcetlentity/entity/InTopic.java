@@ -10,29 +10,20 @@ import java.util.Date;
 
 /**
  * @author ：llc
- * @date ：Created in 2020/5/5 16:42
- * @description：采集任务DO
+ * @date ：Created in 2020/5/7 23:18
+ * @description：intopic
  * @modified By：
  * @version: $
  */
 @Entity
 @Data
-@Table(name = "extract_task")
-public class ExtractTaskDO {
+@Table(name = "in_topic")
+public class InTopic {
     @Id
     @Column(name = "id")
     private Long id;
-    @Column(name = "source_id")
-    private Long sourceId;
-    @Column(name = "ip",length = 39)
-    private String ip;
-    @Column(name = "execute_time")
-    private Date executeTime;
-    /**
-     * 任务状态 1已启动 2异常 3已停止
-     */
-    @Column(name = "status")
-    private Integer status;
+    @Column(name = "name")
+    private String name;
     @Column(name = "gmt_create")
     private Date gmtCreate;
     @Column(name = "gmt_modified")

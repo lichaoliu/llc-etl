@@ -1,4 +1,4 @@
-package com.llc.etl.admin.core.result;
+package com.llc.llcetlentity.result;
 
 import java.io.Serializable;
 
