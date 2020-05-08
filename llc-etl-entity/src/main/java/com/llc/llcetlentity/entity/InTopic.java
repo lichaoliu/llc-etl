@@ -15,21 +15,12 @@ import java.util.Date;
  * @modified By：
  * @version: $
  */
-@Entity
-@Data
-@Table(name = "in_topic")
 public class InTopic {
     @Id
-    @Column(name = "id")
     private Long id;
-    @Column(name = "name")
     private String name;
-    @Column(name = "gmt_create")
     private Date gmtCreate;
-    @Column(name = "gmt_modified")
     private Date gmtModified;
-    @Column(name = "gmt_create_user")
     private Long gmtCreateUser;
-    @Column(name = "gmt_modified_user")
     private Long gmtModifiedUser;
 }
