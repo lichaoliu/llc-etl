@@ -17,13 +17,14 @@
 
     <select id="listNodeByCondition" parameterType="com.llc.etl.admin.query.NodeQuery"
             resultType="com.llc.llcetlentity.entity.NodeDO">
-        select `name`,ip,last_heart_time,gmt_create from node WHERE 1=1
+        select `id`,`name`,ip,last_heart_time,gmt_create from node WHERE 1=1
         <if test="name!=null and name != ''">
             and name like CONCAT(CONCAT('%',#{name},'%'))
         </if>
         <if test="ip!=null and ip != ''">
             and ip =#{ip}
         </if>
+        order by gmt_create desc
     </select>
 
     <delete id="deleteNodes">

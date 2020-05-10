@@ -1,6 +1,7 @@
 package com.llc.etl.admin.query;
 
-import com.llc.llcetlentity.vo.PageVo;
+import cn.hutool.crypto.SecureUtil;
+import com.github.pagehelper.Page;
 import lombok.Data;
 
 /**
@@ -11,7 +12,14 @@ import lombok.Data;
  * @version: $
  */
 @Data
-public class NodeQuery extends PageVo {
+public class NodeQuery extends Page {
     private String name;
     private String ip;
+
+    public static void main(String[] argus){
+        String str = "aa";
+        String aa = "aa";
+        System.out.println(SecureUtil.md5(str));
+        System.out.println(SecureUtil.md5(aa));
+    }
 }

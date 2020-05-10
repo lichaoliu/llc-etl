@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.llc.etl.admin.dao.CollectionSourceDao">
+
+    <insert id="insert" parameterType="com.llc.llcetlentity.entity.CollectionSourceDO">
+        INSERT INTO collection_source ( `id`, `name`, `source_type`, `md5`, `config`, `character_set`, `gmt_create`, `gmt_modified` )
+        VALUES
+            (
+                #{id},
+                #{name},
+                #{sourceType},
+                #{md5},
+                #{config},
+                #{characterSet},
+                #{gmtCreate},
+                #{gmtModified}
+            )
+    </insert>
+
+    <select id="listCollectionSourceByCondition" parameterType="com.llc.etl.admin.query.CollectionSourceQuery"
+            resultType="com.llc.llcetlentity.entity.CollectionSourceDO">
+        select `id`,`name`,source_type,config,character_set,gmt_create from collection_source WHERE 1=1
+        <if test="name!=null and name != ''">
+            and name like CONCAT(CONCAT('%',#{name},'%'))
+        </if>
+        <if test="ip!=null and ip != ''">
+            and ip =#{ip}
+        </if>
+        order by gmt_create desc
+    </select>
+
+
+    <delete id="delete">
+        DELETE FROM collection_source WHERE id IN
+        <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="update">
+        UPDATE `collection_source`
+        <set>
+            <if test="name != null">`name`=#{name},</if>
+            <if test="sourceType != null">`source_type`=#{sourceType},</if>
+            <if test="md5 != null">`md5`=#{md5},</if>
+            <if test="config != null">`config`=#{config},</if>
+            <if test="characterSet != null">`character_set`=#{characterSet},</if>
+            gmt_modified=#{gmtModified}
+        </set>
+        WHERE id=#{id}
+    </update>
+
+</mapper>

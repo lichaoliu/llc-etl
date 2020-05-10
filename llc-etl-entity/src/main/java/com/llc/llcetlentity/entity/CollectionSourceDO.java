@@ -2,10 +2,7 @@ package com.llc.llcetlentity.entity;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 /**
@@ -18,6 +15,7 @@ import java.util.Date;
 @Data
 public class CollectionSourceDO {
     private Long id;
+    @NotBlank(message = "采集源名称不能为空")
     private String name;
     private Integer sourceType;
     private String md5;
