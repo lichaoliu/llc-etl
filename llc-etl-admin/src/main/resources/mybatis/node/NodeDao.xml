@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.llc.etl.admin.dao.NodeDao">
+
+    <insert id="insertNode" parameterType="com.llc.llcetlentity.entity.NodeDO">
+        INSERT INTO node ( `id`, `name`, `ip`, `gmt_create`, `gmt_modified` )
+        VALUES
+            (
+                #{id},
+                #{name},
+                #{ip},
+                #{gmtCreate},
+                #{gmtModified}
+            )
+    </insert>
+
+    <select id="listNodeByCondition" parameterType="com.llc.etl.admin.query.NodeQuery"
+            resultType="com.llc.llcetlentity.entity.NodeDO">
+        select `name`,ip,last_heart_time,gmt_create from node WHERE 1=1
+        <if test="name!=null and name != ''">
+            and name like CONCAT(CONCAT('%',#{name},'%'))
+        </if>
+        <if test="ip!=null and ip != ''">
+            and ip =#{ip}
+        </if>
+    </select>
+
+    <delete id="deleteNodes">
+        DELETE FROM node WHERE id IN
+        <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateNode" parameterType="com.llc.llcetlentity.entity.NodeDO">
+        UPDATE `node`
+        <set>
+            <if test="name != null">`name`=#{name},</if>
+            <if test="ip != null">`ip`=#{ip},</if>
+            gmt_modified=#{gmtModified}
+        </set>
+        WHERE id=#{id}
+    </update>
+
+</mapper>

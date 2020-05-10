@@ -1,6 +1,10 @@
 package com.llc.llcetlentity.result;
 
+import com.google.common.collect.Maps;
+
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class Return implements Serializable {
@@ -24,8 +28,25 @@ public class Return implements Serializable {
         this.msg = msg;
     }
 
-    public Return(Object content) {
+    public Return(String msg) {
         this.code = SUCCESS_CODE;
+        this.msg = msg;
+    }
+
+    public void put(String str, Object obj) {
+        if (this.content == null) {
+            this.content = new HashMap<String, Object>(3);
+            ((HashMap<String, Object>) this.content).put(str, obj);
+        } else {
+            ((HashMap<String, Object>) this.content).put(str, obj);
+        }
+    }
+
+    public Object getContent() {
+        return content;
+    }
+
+    public void setContent(Object content) {
         this.content = content;
     }
 

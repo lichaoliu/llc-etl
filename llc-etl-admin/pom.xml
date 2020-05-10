@@ -19,22 +19,36 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>com.llc</groupId>
-            <artifactId>llc-etl-entity</artifactId>
-            <version>0.0.1</version>
-            <scope>provided</scope>
-        </dependency>
+        <!-- 实体类 -->
         <dependency>
             <groupId>com.llc</groupId>
             <artifactId>llc-etl-entity</artifactId>
             <version>0.0.1</version>
             <scope>compile</scope>
         </dependency>
+        <!-- 分页工具 -->
         <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper</artifactId>
             <version>LATEST</version>
+        </dependency>
+        <!-- mybatis -->
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>LATEST</version>
+        </dependency>
+        <!-- hutool工具包 -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>LATEST</version>
+        </dependency>
+        <!-- mysql -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
         </dependency>
     </dependencies>
 

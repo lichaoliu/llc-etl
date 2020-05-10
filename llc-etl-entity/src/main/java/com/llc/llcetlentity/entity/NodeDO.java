@@ -2,6 +2,7 @@ package com.llc.llcetlentity.entity;
 
 import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 /**
@@ -16,7 +17,9 @@ import java.util.Date;
 @Data
 public class NodeDO {
     private Long id;
+    @NotBlank(message = "节点ip不能为空")
     private String ip;
+    @NotBlank(message = "节点名称不能为空")
     private String name;
     private Date lastHeartTime;
     private Date gmtCreate;
