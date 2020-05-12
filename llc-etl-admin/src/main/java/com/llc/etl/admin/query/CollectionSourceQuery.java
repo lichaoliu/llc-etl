@@ -1,6 +1,6 @@
 package com.llc.etl.admin.query;
 
-import com.github.pagehelper.Page;
+import com.llc.llcetlentity.vo.PageVo;
 import lombok.Data;
 
 /**
@@ -11,7 +11,7 @@ import lombok.Data;
  * @version: $
  */
 @Data
-public class CollectionSourceQuery extends Page {
+public class CollectionSourceQuery extends PageVo {
     private String name;
-    private String ip;
+    private Integer sourceType;
 }

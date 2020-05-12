@@ -5,6 +5,7 @@ import cn.hutool.crypto.SecureUtil;
 import com.github.pagehelper.PageHelper;
 import com.llc.etl.admin.query.CollectionSourceQuery;
 import com.llc.etl.admin.service.CollectionSourceService;
+import com.llc.etl.admin.vo.CollectionSourceVO;
 import com.llc.llcetlentity.entity.CollectionSourceDO;
 import com.llc.llcetlentity.entity.NodeDO;
 import com.llc.llcetlentity.result.Return;
@@ -41,6 +42,7 @@ public class CollectionSourceController {
         collectionSourceDO.setGmtModified(current);
         collectionSourceDO.setId(IdUtil.nextId());
         collectionSourceDO.setMd5(SecureUtil.md5(collectionSourceDO.getConfig()));
+        System.out.println(collectionSourceDO.getMd5().length());
         Boolean flag = collectionSourceService.insert(collectionSourceDO);
         if (flag) {
             return Return.SUCCESS;
@@ -54,19 +56,16 @@ public class CollectionSourceController {
      * @param collectionSourceQuery
      * @return
      */
-    @PostMapping("/query/list")
+    @PostMapping("/list/query")
     public Return pageNode(@RequestBody CollectionSourceQuery collectionSourceQuery) {
         Integer pageNum = collectionSourceQuery.getPageNum();
         Integer pageSize = collectionSourceQuery.getPageSize();
         PageHelper.startPage(pageNum, pageSize);
-        if (!StringUtils.isEmpty(collectionSourceQuery.getIp())) {
-            collectionSourceQuery.setIp(IpTransfer.ipTo39Decimal(collectionSourceQuery.getIp()));
-        }
-        List<CollectionSourceDO> nodeDOList = collectionSourceService.listCollectionSourceByCondition(collectionSourceQuery);
+        List<CollectionSourceVO> nodeDOList = collectionSourceService.listCollectionSourceByCondition(collectionSourceQuery);
         Return re = Return.SUCCESS;
         re.put("data", nodeDOList);
         re.put("total", nodeDOList.size());
-        return null;
+        return re;
     }
 
     /**

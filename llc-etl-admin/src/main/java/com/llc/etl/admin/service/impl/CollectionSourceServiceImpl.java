@@ -3,10 +3,12 @@ package com.llc.etl.admin.service.impl;
 import com.llc.etl.admin.dao.CollectionSourceDao;
 import com.llc.etl.admin.query.CollectionSourceQuery;
 import com.llc.etl.admin.service.CollectionSourceService;
+import com.llc.etl.admin.vo.CollectionSourceVO;
 import com.llc.llcetlentity.entity.CollectionSourceDO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,8 +29,11 @@ public class CollectionSourceServiceImpl implements CollectionSourceService {
     }
 
     @Override
-    public List<CollectionSourceDO> listCollectionSourceByCondition(CollectionSourceQuery collectionSourceQuery) {
-        return collectionSourceDao.listCollectionSourceByCondition(collectionSourceQuery);
+    public List<CollectionSourceVO> listCollectionSourceByCondition(CollectionSourceQuery collectionSourceQuery) {
+        List<CollectionSourceDO> collectionSourceDOS = collectionSourceDao.listCollectionSourceByCondition(collectionSourceQuery);
+        List<CollectionSourceVO> collectionSourceVOList = new ArrayList<>();
+        collectionSourceDOS.forEach(x -> collectionSourceVOList.add(CollectionSourceVO.convertFor(x)));
+        return collectionSourceVOList;
     }
 
     @Override

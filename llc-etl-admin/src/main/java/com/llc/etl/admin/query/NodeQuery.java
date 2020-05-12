@@ -1,7 +1,8 @@
 package com.llc.etl.admin.query;
 
-import cn.hutool.crypto.SecureUtil;
-import com.github.pagehelper.Page;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.llc.llcetlentity.vo.PageVo;
 import lombok.Data;
 
 /**
@@ -12,14 +13,17 @@ import lombok.Data;
  * @version: $
  */
 @Data
-public class NodeQuery extends Page {
+public class NodeQuery extends PageVo {
     private String name;
     private String ip;
 
     public static void main(String[] argus){
-        String str = "aa";
-        String aa = "aa";
-        System.out.println(SecureUtil.md5(str));
-        System.out.println(SecureUtil.md5(aa));
+        String mm = "{\"name\":\"syslog日志\",\"sourceType\":1,\"pageNum\":1,\"pageSize\":20}";
+        JSONObject parse = JSONObject.parseObject(mm);
+//        CollectionSourceQuery collectionSourceDaos = JSONObject.toJavaObject(parse, CollectionSourceQuery.class);
+        CollectionSourceQuery collectionSourceQuery = JSON.parseObject(mm, CollectionSourceQuery.class);
+        System.out.println(collectionSourceQuery);
+
+
     }
 }
