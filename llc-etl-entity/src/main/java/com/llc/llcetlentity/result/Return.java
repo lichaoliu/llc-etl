@@ -10,17 +10,16 @@ public class Return implements Serializable {
     public static final int SUCCESS_CODE = 200;
     public static final int FAIL_CODE = 500;
 
-    /**
-     * 有问题 重新设计
-     */
-    public static final Return SUCCESS = new Return("处理成功");
-    public static final Return FAIL = new Return(FAIL_CODE, null);
-
     private int code;
     private String msg;
     private Object content;
 
-    public Return() {
+    public static Return SUCCESS() {
+        return new Return("处理成功");
+    }
+
+    public static Return FAIL() {
+        return new Return(FAIL_CODE, null);
     }
 
     public Return(int code, String msg) {

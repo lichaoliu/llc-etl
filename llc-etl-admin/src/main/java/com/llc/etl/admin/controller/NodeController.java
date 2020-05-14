@@ -41,9 +41,9 @@ public class NodeController {
         nodeDO.setId(IdUtil.nextId());
         Boolean flag = nodeService.insertNode(nodeDO);
         if (!flag) {
-            return Return.FAIL;
+            return Return.FAIL();
         }
-        return Return.SUCCESS;
+        return Return.SUCCESS();
     }
 
     /**
@@ -61,7 +61,7 @@ public class NodeController {
             nodeQuery.setIp(IpTransfer.ipTo39Decimal(nodeQuery.getIp()));
         }
         List<NodeDO> nodeDOList = nodeService.listNodeByCondition(nodeQuery);
-        Return re = Return.SUCCESS;
+        Return re = Return.SUCCESS();
         re.put("data", nodeDOList);
         re.put("total", nodeDOList.size());
         return re;
@@ -78,9 +78,9 @@ public class NodeController {
         List<Long> idList = (List<Long>) params.get("id");
         Boolean flag = nodeService.deleteNodes(idList);
         if (flag) {
-            return Return.SUCCESS;
+            return Return.SUCCESS();
         }
-        return Return.FAIL;
+        return Return.FAIL();
     }
 
     /**
@@ -96,9 +96,9 @@ public class NodeController {
         nodeDO.setIp(IpTransfer.ipTo39Decimal(nodeDO.getIp()));
         Boolean flag = nodeService.updateNode(nodeDO);
         if (flag) {
-            return Return.SUCCESS;
+            return Return.SUCCESS();
         }
-        return Return.FAIL;
+        return Return.FAIL();
     }
 
 }

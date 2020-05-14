@@ -4,7 +4,9 @@ import com.llc.etl.admin.dao.CollectionSourceDao;
 import com.llc.etl.admin.query.CollectionSourceQuery;
 import com.llc.etl.admin.service.CollectionSourceService;
 import com.llc.etl.admin.vo.CollectionSourceVO;
+import com.llc.etl.admin.vo.CollectionSourcebuttonVO;
 import com.llc.llcetlentity.entity.CollectionSourceDO;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,5 +46,17 @@ public class CollectionSourceServiceImpl implements CollectionSourceService {
     @Override
     public Boolean update(CollectionSourceDO collectionSourceDO) {
         return collectionSourceDao.update(collectionSourceDO);
+    }
+
+    @Override
+    public List<CollectionSourcebuttonVO> listCollectionSourcebuttons() {
+        List<CollectionSourceDO> collectionSourceDOS = collectionSourceDao.listCollectionSourceByCondition(new CollectionSourceQuery());
+        List<CollectionSourcebuttonVO> sourcebuttonVOList = new ArrayList<>();
+        for (CollectionSourceDO sourceDO : collectionSourceDOS) {
+            CollectionSourcebuttonVO buttonVO = new CollectionSourcebuttonVO();
+            BeanUtils.copyProperties(sourceDO, buttonVO);
+            sourcebuttonVOList.add(buttonVO);
+        }
+        return sourcebuttonVOList;
     }
 }

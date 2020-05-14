@@ -6,6 +6,7 @@ import com.github.pagehelper.PageHelper;
 import com.llc.etl.admin.query.CollectionSourceQuery;
 import com.llc.etl.admin.service.CollectionSourceService;
 import com.llc.etl.admin.vo.CollectionSourceVO;
+import com.llc.etl.admin.vo.CollectionSourcebuttonVO;
 import com.llc.llcetlentity.entity.CollectionSourceDO;
 import com.llc.llcetlentity.entity.NodeDO;
 import com.llc.llcetlentity.result.Return;
@@ -42,12 +43,11 @@ public class CollectionSourceController {
         collectionSourceDO.setGmtModified(current);
         collectionSourceDO.setId(IdUtil.nextId());
         collectionSourceDO.setMd5(SecureUtil.md5(collectionSourceDO.getConfig()));
-        System.out.println(collectionSourceDO.getMd5().length());
         Boolean flag = collectionSourceService.insert(collectionSourceDO);
         if (flag) {
-            return Return.SUCCESS;
+            return Return.SUCCESS();
         }
-        return Return.FAIL;
+        return Return.FAIL();
     }
 
     /**
@@ -62,7 +62,7 @@ public class CollectionSourceController {
         Integer pageSize = collectionSourceQuery.getPageSize();
         PageHelper.startPage(pageNum, pageSize);
         List<CollectionSourceVO> nodeDOList = collectionSourceService.listCollectionSourceByCondition(collectionSourceQuery);
-        Return re = Return.SUCCESS;
+        Return re = Return.SUCCESS();
         re.put("data", nodeDOList);
         re.put("total", nodeDOList.size());
         return re;
@@ -79,9 +79,9 @@ public class CollectionSourceController {
         List<Long> idList = (List<Long>) params.get("id");
         Boolean flag = collectionSourceService.delete(idList);
         if (flag) {
-            return Return.SUCCESS;
+            return Return.SUCCESS();
         }
-        return Return.FAIL;
+        return Return.FAIL();
     }
 
     /**
@@ -97,8 +97,23 @@ public class CollectionSourceController {
         collectionSourceDO.setMd5(SecureUtil.md5(collectionSourceDO.getConfig()));
         Boolean flag = collectionSourceService.update(collectionSourceDO);
         if (flag) {
-            return Return.SUCCESS;
+            return Return.SUCCESS();
         }
-        return Return.FAIL;
+        return Return.FAIL();
     }
+
+    /**
+     * 编辑节点
+     *
+     * @param
+     * @return 是否编辑成功
+     */
+    @GetMapping("/down-button")
+    public Return getDownButton() {
+        List<CollectionSourcebuttonVO> list = collectionSourceService.listCollectionSourcebuttons();
+        Return re = Return.SUCCESS();
+        re.put("data", list);
+        return re;
+    }
+
 }

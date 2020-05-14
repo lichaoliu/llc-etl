@@ -2,7 +2,6 @@ package com.llc.etl.admin.dao;
 
 import com.llc.etl.admin.query.CollectionSourceQuery;
 import com.llc.llcetlentity.entity.CollectionSourceDO;
-import com.llc.llcetlentity.entity.NodeDO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.llc.etl.admin.dao.CollectionTaskDao">
+
+    <insert id="insert" parameterType="com.llc.llcetlentity.entity.CollectionTaskDO">
+        INSERT INTO `collection_task` ( `id`, `source_id`, `in_topic`, `status`, `start_time`, `end_time`, `gmt_create`, `gmt_modified` )
+        VALUES
+            (
+                #{id},
+                #{sourceId},
+                #{inTopicId},
+                #{status},
+                #{startTime},
+                #{endTime},
+                #{gmtCreate},
+                #{gmtModified}
+            )
+    </insert>
+
+</mapper>
