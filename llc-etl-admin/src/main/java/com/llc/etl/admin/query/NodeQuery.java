@@ -16,14 +16,4 @@ import lombok.Data;
 public class NodeQuery extends PageVo {
     private String name;
     private String ip;
-
-    public static void main(String[] argus){
-        String mm = "{\"name\":\"syslog日志\",\"sourceType\":1,\"pageNum\":1,\"pageSize\":20}";
-        JSONObject parse = JSONObject.parseObject(mm);
-//        CollectionSourceQuery collectionSourceDaos = JSONObject.toJavaObject(parse, CollectionSourceQuery.class);
-        CollectionSourceQuery collectionSourceQuery = JSON.parseObject(mm, CollectionSourceQuery.class);
-        System.out.println(collectionSourceQuery);
-
-
-    }
 }
