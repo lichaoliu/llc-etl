@@ -4,12 +4,13 @@
 <mapper namespace="com.llc.etl.admin.dao.CollectionTaskDao">
 
     <insert id="insert" parameterType="com.llc.llcetlentity.entity.CollectionTaskDO">
-        INSERT INTO `collection_task` ( `id`, `source_id`, `in_topic`, `status`, `start_time`, `end_time`, `gmt_create`, `gmt_modified` )
+        INSERT INTO `collection_task` ( `id`, `source_id`, `node_id`, `in_topic`, `status`, `start_time`, `end_time`, `gmt_create`, `gmt_modified` )
         VALUES
             (
                 #{id},
                 #{sourceId},
-                #{inTopicId},
+                #{nodeId},
+                #{inTopic},
                 #{status},
                 #{startTime},
                 #{endTime},
@@ -17,5 +18,64 @@
                 #{gmtModified}
             )
     </insert>
+
+    <select id="listCollectionTaskByCondition" parameterType="com.llc.etl.admin.query.CollectionTaskQuery"
+            resultType="com.llc.etl.admin.vo.CollectionTaskVO">
+        SELECT
+        t1.id AS id,
+        t2.id AS collectionSourceId,
+        t2.NAME AS collectionSourceName,
+        t3.id AS nodeId,
+        t3.NAME AS nodeName,
+        t1.in_topic AS inTopic,
+        t1.`status` AS status,
+        t1.start_time AS startTime,
+        t1.end_time AS endTime,
+        t1.gmt_create AS gmtCreate
+        FROM
+        collection_task t1,
+        collection_source t2,
+        node t3
+        WHERE
+        t1.source_id = t2.id
+        AND t1.node_id = t3.id
+        <if test="collectionSourceName!=null and collectionSourceName != ''">
+            and t2.name like CONCAT(CONCAT('%',#{collectionSourceName},'%'))
+        </if>
+        <if test="nodeName!=null and nodeName != ''">
+            and t3.name like CONCAT(CONCAT('%',#{nodeName},'%'))
+        </if>
+        <if test="inTopic!=null and inTopic != ''">
+            and t1.in_topic like CONCAT(CONCAT('%',#{inTopic},'%'))
+        </if>
+        <if test="status!=null and status != ''">
+            and t1.status =#{status}
+        </if>
+        <if test="startTimeStart!=null">
+            and gmt_create &gt;=  #{startTimeStart}
+        </if>
+        <if test="startTimeEnd!=null">
+            and gmt_create &lt;=  #{startTimeEnd}
+        </if>
+        order by t1.gmt_create desc
+    </select>
+
+    <delete id="delete">
+        DELETE FROM collection_task WHERE id IN
+        <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateStatus">
+        UPDATE collection_task set `status` = #{status} where id = #{id}
+    </update>
+
+    <select id="listCollectionTasks" resultType="com.llc.llcetlentity.entity.CollectionTaskDO">
+        select * from collection_task where id in
+        <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
 
 </mapper>
